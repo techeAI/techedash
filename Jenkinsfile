@@ -11,6 +11,13 @@ pipeline {
                  git url: 'https://github.com/techeAI/techedash.git', branch: 'main'
             }
         }
+	stages {
+        stage('Node Build') {
+            steps {
+                sh 'yarn install'
+				sh 'yarn build'
+            }
+        }
         stage('Build Docker Image') {
             steps {
                 script {
