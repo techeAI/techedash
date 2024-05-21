@@ -1,5 +1,4 @@
 FROM node:20.2.0-slim
-RUN apt update
 WORKDIR /app
 
 # Define node.js environment variables
@@ -11,9 +10,8 @@ ENV NODE_OPTIONS '--no-experimental-fetch'
 
 COPY next.config.js ./
 COPY public ./public
-COPY package.json yarn.lock ./
-
-
+COPY package.json ./temp_package.json
+COPY yarn.lock ./temp_yarn.lock
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
 RUN yarn install
@@ -31,6 +29,8 @@ COPY ./cli ./cli
 RUN mkdir /data
 
 # Install dependencies
+RUN apt update && apt install -y openssl wget
+
 # Move node_modules to temp location to avoid overwriting
 RUN mv node_modules _node_modules
 RUN rm package.json
