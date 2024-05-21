@@ -13,8 +13,9 @@ pipeline {
         }
         stage('Node Build') {
             steps {
+		sh 'npm install -g yarn'
                 sh 'yarn install'
-				sh 'yarn build'
+		sh 'yarn build'
             }
         }
         stage('Build Docker Image') {
