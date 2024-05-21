@@ -9,6 +9,9 @@ pipeline {
         stage('Clone Repository') {
             steps {
                  git url: 'https://github.com/techeAI/techedash.git', branch: 'main'
+                sh 'npm install -g yarn'
+                sh 'yarn install'
+                sh 'yarn build'
             }
         }
         stage('Build Docker Image') {
