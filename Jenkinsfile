@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/techeAI/techedash.git', branch: 'main'
+                 git url: 'https://github.com/techeAI/techedash.git', branch: 'main'
             }
         }
         stage('Build Docker Image') {
