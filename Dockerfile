@@ -28,9 +28,6 @@ COPY ./cli ./cli
 RUN mkdir /data
 
 # Install dependencies
-RUN apt update && apt install -y openssl wget nginx
-RUN openssl req -x509 -newkey rsa:4096 -keyout /etc/ssl/key.pem -out /etc/ssl/cert.pem -sha256 -days 36500 -nodes -subj "/C=IN/ST=WB/L=CCU/O=OpenTECHE/OU=techeAI/CN=myhub.local"
-COPY default /etc/nginx/sites-enabled/default
 # Move node_modules to temp location to avoid overwriting
 RUN mv node_modules _node_modules
 RUN rm package.json
