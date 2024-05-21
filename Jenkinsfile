@@ -11,7 +11,6 @@ pipeline {
                  git url: 'https://github.com/techeAI/techedash.git', branch: 'main'
             }
         }
-	stages {
         stage('Node Build') {
             steps {
                 sh 'yarn install'
@@ -34,11 +33,6 @@ pipeline {
                     }
                 }
             }
-        }
-    }
-    post {
-        always {
-            cleanWs()
         }
     }
 }
