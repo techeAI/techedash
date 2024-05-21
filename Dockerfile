@@ -11,10 +11,13 @@ ENV NODE_OPTIONS '--no-experimental-fetch'
 
 COPY next.config.js ./
 COPY public ./public
-COPY package.json ./temp_package.json
-COPY yarn.lock ./temp_yarn.lock
+COPY package.json yarn.lock ./
+
+
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
+RUN yarn install
+RUN yarn build
 COPY .next/standalone ./
 COPY .next/static ./.next/static
 COPY ./scripts/run.sh ./scripts/run.sh
