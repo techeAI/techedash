@@ -28,6 +28,7 @@ pipeline {
             steps {
                  git url: 'https://github.com/techeAI/techedash.git', branch: 'main'
                 sh 'npm install -g yarn'
+                sh 'yarn add node-gyp'
                 sh 'yarn install'
                 sh 'yarn build'
             }
