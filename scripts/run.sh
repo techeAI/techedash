@@ -10,6 +10,6 @@ wait $PID
 cp -n /app/data/default.json /app/data/configs/default.json
 
 echo "Starting production server..."
-node /app/server.js & PID=$! & nginx -g 'daemon off;'
+node /app/server.js & PID=$!
 
 wait $PID
