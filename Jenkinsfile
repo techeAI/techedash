@@ -27,10 +27,10 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://index.docker.io/v1/', env.DOCKER_HUB_CREDENTIALS_ID) {
-                        def image = docker.image("${env.DOCKER_IMAGE_NAME}:${env.DOCKER_IMAGE_TAG}")
-                        image.push()
                         def dateimage = docker.image("${env.DOCKER_IMAGE_NAME}:${env.DATE_TAG}")
                         dateimage.push()
+                        def image = docker.image("${env.DOCKER_IMAGE_NAME}:${env.DOCKER_IMAGE_TAG}")
+                        image.push()
                     }
                 }
             }
