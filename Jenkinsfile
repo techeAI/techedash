@@ -19,7 +19,7 @@ pipeline {
             steps {
                 script {
                     def image = docker.build("${env.DOCKER_IMAGE_NAME}:${env.DOCKER_IMAGE_TAG}")
-                    sh "docker tag ${IMAGE_NAME}:${DATE_TAG} ${IMAGE_NAME}:${DOCKER_IMAGE_TAG}"
+                    sh "docker tag ${DOCKER_IMAGE_NAME}:${DATE_TAG} ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}"
                 }
             }
         }
