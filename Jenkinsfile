@@ -26,7 +26,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('', env.DOCKER_HUB_CREDENTIALS_ID) {
+                    docker.withRegistry('https://index.docker.io/v1/', env.DOCKER_HUB_CREDENTIALS_ID) {
                         def image = docker.image("${env.DOCKER_IMAGE_NAME}:${env.DOCKER_IMAGE_TAG}")
                         image.push()
                         def dateimage = docker.image("${env.DOCKER_IMAGE_NAME}:${env.DATE_TAG}")
@@ -35,14 +35,5 @@ pipeline {
                 }
             }
         }
-    }
-        post {
-        always {
-            cleanWs()
-        }
-    	cleanup {
-        sh 'docker rmi ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}'
-        sh 'docker rmi ${DOCKER_IMAGE_NAME}:${DATE_TAG}'
-    }
     }
 }
