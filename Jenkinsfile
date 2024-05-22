@@ -5,6 +5,7 @@ pipeline {
         DOCKER_IMAGE_NAME = 'techeai/techedash'
         DOCKER_IMAGE_TAG = 'latest'
         DATE_TAG = new Date().format('yyyyMMdd-HHmmss')
+        DOCKER_REGISTRY = 
     }
     stages {
         stage('Clone Repository') {
@@ -34,5 +35,14 @@ pipeline {
                 }
             }
         }
+    }
+        post {
+        always {
+            cleanWs()
+        }
+    	cleanup {
+        sh 'docker rmi ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}'
+        sh 'docker rmi ${DOCKER_IMAGE_NAME}:${DATE_TAG}'
+    }
     }
 }
